@@ -9,7 +9,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="temperatura")
+@Table(name="temperature")
 public class Temperature {
 
 	@Id
@@ -18,9 +18,9 @@ public class Temperature {
 	private Long idTemp;
 	
 	@Column
-	private Double temperatura;
+	private Double temperature;
 	
-	@Column(name="data_registro")
+	@Column(name="registre_date")
 	private Date dataRegistro;
 
 	public Long getIdTemp() {
@@ -31,12 +31,12 @@ public class Temperature {
 		this.idTemp = idTemp;
 	}
 
-	public Double getTemperatura() {
-		return temperatura;
+	public Double getTemperature() {
+		return temperature;
 	}
 
-	public void setTemperatura(Double temperatura) {
-		this.temperatura = temperatura;
+	public void setTemperatura(Double temperature) {
+		this.temperature = temperature;
 	}
 
 	public Date getDataRegistro() {

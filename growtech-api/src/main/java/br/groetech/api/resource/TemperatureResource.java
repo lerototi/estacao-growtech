@@ -7,6 +7,7 @@ import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationEventPublisher;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -43,7 +44,7 @@ public class TemperatureResource {
 		publisher.publishEvent(new ResourceCreatedEvent(this, response, temperature.getIdTemp()));
 		
 		
-		return null;
+		return ResponseEntity.status(HttpStatus.CREATED).body(temperatureSaved);
 		
 	}
 
