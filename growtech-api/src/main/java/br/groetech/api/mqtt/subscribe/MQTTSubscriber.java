@@ -19,7 +19,7 @@ public class MQTTSubscriber extends MQTTConfig implements MqttCallback, MQTTSubs
 	
 	private String brokerUrl = null;
 	final private String colon = ":";
-	final private String clientId = "demoClient";
+	final private String clientId = "growtech-api-subscribe";
 	
 	private MqttClient mqttClient = null;
 	private MqttConnectOptions connectOptions = null;

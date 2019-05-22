@@ -5,12 +5,12 @@ package br.groetech.api.config;
 public abstract class MQTTConfig {
 
 	
-	protected final String broker = "postman.cloudmqtt.com";
+	protected final String broker = "leroto-pc";
 	protected final int qos = 0;
 	protected Boolean hasSSL = false; /* By default SSL is disabled */
-	protected Integer port = 18262; /* Default port */
-	protected final String userName = "folzpdol";
-	protected final String password = "SRD7GBAXyNBP";
+	protected Integer port = 1883; /* Default port */
+	protected final String userName = "";
+	protected final String password = "";
 	protected final String TCP = "tcp://";
 	protected final String SSL = "ssl://";
 	

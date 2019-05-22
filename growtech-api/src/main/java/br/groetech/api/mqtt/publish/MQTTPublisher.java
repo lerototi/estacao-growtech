@@ -19,7 +19,7 @@ public class MQTTPublisher extends MQTTConfig implements MqttCallback, MQTTPubli
 	private String brokerUrl = null;
 	
 	final private String colon = ":";
-	final private String clientId = "democlient";
+	final private String clientId = "growtech-api-publish";
 	
 	private MqttClient mqttClient = null;
 	private MqttConnectOptions connectionOptions = null;

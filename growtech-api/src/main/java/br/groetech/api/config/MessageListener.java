@@ -4,12 +4,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import br.groetech.api.mqtt.subscribe.MQTTSubscriber;
+import br.groetech.api.mqtt.subscribe.MQTTSubscriberBase;
 
 @Component
 public class MessageListener implements Runnable {
 
 	@Autowired
-	MQTTSubscriber subscriber;
+	MQTTSubscriberBase subscriber;
 	
 	@Override
 	public void run() {

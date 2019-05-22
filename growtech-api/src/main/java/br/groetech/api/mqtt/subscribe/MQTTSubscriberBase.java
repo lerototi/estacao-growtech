@@ -7,7 +7,7 @@ import br.groetech.api.mqtt.publish.MQTTPublisherBase;
 
 public interface MQTTSubscriberBase {
 	
-	public static final Logger logger = LoggerFactory.getLogger(MQTTPublisherBase.class);
+	public static final Logger logger = LoggerFactory.getLogger(MQTTSubscriberBase.class);
 	
 	/**
 	 * Subscribe message

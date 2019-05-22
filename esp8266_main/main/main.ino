@@ -20,10 +20,10 @@
 // Wi-Fi
 const char* ssid = "GVT-F403";
 const char* password = "0503000384";
-const char* mqttServer = "postman.cloudmqtt.com";
-const int mqttPort = 18262;
-const char* mqttUser = "folzpdol";
-const char* mqttPassword = "SRD7GBAXyNBP";
+const char* mqttServer = "leroto-pc";
+const int mqttPort = 1883;
+const char* mqttUser = "";
+const char* mqttPassword = "";
 
 // Instancias
 WiFiClient espClient;
