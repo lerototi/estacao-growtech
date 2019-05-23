@@ -1,7 +1,5 @@
 package br.groetech.api;
 
-import java.util.concurrent.Delayed;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
