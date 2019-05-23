@@ -1,5 +1,6 @@
 package br.groetech.api.mqtt.subscribe;
 
+import java.sql.Date;
 import java.sql.Timestamp;
 
 import org.eclipse.paho.client.mqttv3.IMqttDeliveryToken;
@@ -9,9 +10,11 @@ import org.eclipse.paho.client.mqttv3.MqttConnectOptions;
 import org.eclipse.paho.client.mqttv3.MqttException;
 import org.eclipse.paho.client.mqttv3.MqttMessage;
 import org.eclipse.paho.client.mqttv3.persist.MemoryPersistence;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import br.groetech.api.config.MQTTConfig;
+import br.groetech.api.service.TemperatureService;
 
 @Component
 public class MQTTSubscriber extends MQTTConfig implements MqttCallback, MQTTSubscriberBase{
@@ -24,6 +27,9 @@ public class MQTTSubscriber extends MQTTConfig implements MqttCallback, MQTTSubs
 	private MqttClient mqttClient = null;
 	private MqttConnectOptions connectOptions = null;
 	private MemoryPersistence persistence = null;
+	
+	@Autowired
+	TemperatureService temperatureService;
 	
 	public MQTTSubscriber() {
 		this.config();
@@ -38,13 +44,23 @@ public class MQTTSubscriber extends MQTTConfig implements MqttCallback, MQTTSubs
 	@Override
 	public void messageArrived(String topic, MqttMessage message) throws Exception {
 		
-		String time = new Timestamp(System.currentTimeMillis()).toString();
+		Date time = new Date(System.currentTimeMillis());
+		
+		
+		
+		
 		System.out.println();
 		System.out.println("***********************************************************************");
 		System.out.println("Message Arrived at Time: " + time + "  Topic: " + topic + "  Message: "
 				+ new String(message.getPayload()));
 		System.out.println("***********************************************************************");
 		System.out.println();
+		
+		if(topic.equals("vega/temp")) {
+		System.out.println("vega");
+		
+		temperatureService.temperatureArrived(message, time);
+	}
 		
 	}
 
@@ -106,17 +122,32 @@ public class MQTTSubscriber extends MQTTConfig implements MqttCallback, MQTTSubs
 			this.mqttClient.setCallback(this);
 		} catch (MqttException me) {
 			me.printStackTrace();
+			
 		}
 		
 	}
 
 	@Override
 	public void subscribeMessage(String topic) {
-		try {
-			this.mqttClient.subscribe(topic, this.qos);
-		} catch (MqttException me) {
-			me.printStackTrace();
+		
+		if (mqttClient.isConnected()) {
+		System.out.println("Cliente Conectado");
+			try {
+				this.mqttClient.subscribe(topic, this.qos);
+			} catch (MqttException me) {
+				me.printStackTrace();
+			}
+		
+		} else {
+			
+			try {
+				mqttClient.reconnect();
+			} catch (MqttException e) {
+				System.out.println("Cliente não conectado");
+				e.printStackTrace();
+			}
 		}
+		
 		
 	}
 	

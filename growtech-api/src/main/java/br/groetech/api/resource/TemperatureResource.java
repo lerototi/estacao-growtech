@@ -1,5 +1,6 @@
 package br.groetech.api.resource;
 
+import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpServletResponse;
@@ -45,6 +46,12 @@ public class TemperatureResource {
 		
 		
 		return ResponseEntity.status(HttpStatus.CREATED).body(temperatureSaved);
+		
+	}
+
+	public void saveMqttReceivedTemperature(Temperature temperature) {
+		Temperature temperatureSaved = temperatureRepository.save(temperature);
+		 System.out.println("Temperatura salva: "+temperatureSaved.getTemperature()+" Hora Registro: "+temperatureSaved.getDataRegistro());
 		
 	}
 

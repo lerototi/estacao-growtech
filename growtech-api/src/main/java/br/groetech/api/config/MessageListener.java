@@ -20,7 +20,7 @@ public class MessageListener implements Runnable {
 			subscriber.subscribeMessage("vega/temp");
 			
 			try {
-				Thread.sleep(2000);
+				Thread.sleep(3000);
 			} catch (InterruptedException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();

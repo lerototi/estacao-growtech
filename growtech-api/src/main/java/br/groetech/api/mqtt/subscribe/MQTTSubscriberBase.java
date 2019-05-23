@@ -1,5 +1,6 @@
 package br.groetech.api.mqtt.subscribe;
 
+import org.eclipse.paho.client.mqttv3.MqttException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -14,6 +15,7 @@ public interface MQTTSubscriberBase {
 	 * 
 	 * @param topic
 	 * @param jasonMessage
+	 * @throws MqttException 
 	 */
 	public void subscribeMessage(String topic);
 
