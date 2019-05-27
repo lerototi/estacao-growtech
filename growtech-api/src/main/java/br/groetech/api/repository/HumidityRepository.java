@@ -6,6 +6,4 @@ import br.groetech.api.model.Humidity;
 
 public interface HumidityRepository extends JpaRepository<Humidity, Long>{
 
-	Humidity saveMqttReceivedHumidity(Humidity humidity);
-
 }

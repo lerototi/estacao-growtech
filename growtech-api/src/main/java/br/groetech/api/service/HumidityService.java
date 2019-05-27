@@ -23,7 +23,7 @@ public class HumidityService {
 		humidity.setRegistreDate(time);
 		humidity.setHumidity(Double.parseDouble(new String (message.getPayload())));
 		
-		humidity = humidityResource.saveMqttReceivedMessage(humidity);
+		humidity = humidityResource.saveMqttReceivedHumidity(humidity);
 		
 	}
 
