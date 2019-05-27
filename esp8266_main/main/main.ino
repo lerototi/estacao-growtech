@@ -92,7 +92,7 @@ WiFi.begin(ssid, password);
   }
 
 //client.publish("Temperatura: ", "");
-client.subscribe("vega/temp");
+//client.subscribe("vega/temp");
 
 }
 
@@ -130,7 +130,7 @@ void loop() {
     
     Serial.println("Temperatura: " + String(temp));
     Serial.println("Publicado: " + msg);
-    client.publish("vega/temp", String(temp).c_str());
+    client.publish("vega/temperature", String(temp).c_str());
     client.publish("vega/humidity", String(humid).c_str());
     client.publish("test", msg.c_str());
   }

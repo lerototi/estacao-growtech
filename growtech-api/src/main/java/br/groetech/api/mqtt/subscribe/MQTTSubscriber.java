@@ -14,6 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import br.groetech.api.config.MQTTConfig;
+import br.groetech.api.service.HumidityService;
 import br.groetech.api.service.TemperatureService;
 
 @Component
@@ -30,6 +31,9 @@ public class MQTTSubscriber extends MQTTConfig implements MqttCallback, MQTTSubs
 	
 	@Autowired
 	TemperatureService temperatureService;
+	
+	@Autowired
+	HumidityService humidityService;
 	
 	public MQTTSubscriber() {
 		this.config();
@@ -56,11 +60,15 @@ public class MQTTSubscriber extends MQTTConfig implements MqttCallback, MQTTSubs
 		System.out.println("***********************************************************************");
 		System.out.println();
 		
-		if(topic.equals("vega/temp")) {
-		System.out.println("vega");
-		
-		temperatureService.temperatureArrived(message, time);
-	}
+		if(topic.equals("vega/temperature")) {
+			System.out.println("vega/temperature:");
+			temperatureService.temperatureArrived(message, time);	
+		}else if (topic.equals("vega/humidity")) {
+			System.out.println("vega/humidity");
+			humidityService.humidityArrived(message, time);
+		}{
+			
+		}
 		
 	}
 

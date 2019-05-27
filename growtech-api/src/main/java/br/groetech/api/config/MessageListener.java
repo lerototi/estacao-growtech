@@ -17,7 +17,8 @@ public class MessageListener implements Runnable {
 		while(true) {
 			
 			subscriber.subscribeMessage("test");
-			subscriber.subscribeMessage("vega/temp");
+			subscriber.subscribeMessage("vega/temperature");
+			subscriber.subscribeMessage("vega/humidity");
 			
 			try {
 				Thread.sleep(3000);
