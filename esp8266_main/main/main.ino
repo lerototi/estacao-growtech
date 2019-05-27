@@ -104,12 +104,12 @@ String msg;
 float humid;
 float temp;
 
-String readDHTTemperature(){
+void readDHTTemperature(){
   temp = dht.readTemperature();
   humid = dht.readHumidity();
 
   Serial.println(temp);
-  return String(temp);
+  Serial.println(humid);
 }
 
 
@@ -131,6 +131,7 @@ void loop() {
     Serial.println("Temperatura: " + String(temp));
     Serial.println("Publicado: " + msg);
     client.publish("vega/temp", String(temp).c_str());
+    client.publish("vega/humidity", String(humid).c_str());
     client.publish("test", msg.c_str());
   }
 }
