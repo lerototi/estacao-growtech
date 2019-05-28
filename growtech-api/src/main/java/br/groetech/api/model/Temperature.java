@@ -1,5 +1,6 @@
 package br.groetech.api.model;
 
+import java.time.LocalDateTime;
 import java.util.Date;
 
 import javax.persistence.Column;
@@ -22,7 +23,7 @@ public class Temperature {
 	private Double temperature;
 	
 	@Column(name="registre_date")
-	private Date dataRegistro;
+	private LocalDateTime dataRegistro;
 
 	public Long getIdTemp() {
 		return idTemp;
@@ -40,12 +41,18 @@ public class Temperature {
 		this.temperature = temperature;
 	}
 
-	public Date getDataRegistro() {
+	public LocalDateTime getDataRegistro() {
 		return dataRegistro;
 	}
 
-	public void setDataRegistro(Date dataRegistro) {
+	public void setDataRegistro(LocalDateTime dataRegistro) {
 		this.dataRegistro = dataRegistro;
 	}
+
+	public void setTemperature(Double temperature) {
+		this.temperature = temperature;
+	}
+
+
 		
 }

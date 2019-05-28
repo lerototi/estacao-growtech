@@ -1,6 +1,7 @@
 package br.groetech.api.service;
 
 import java.sql.Date;
+import java.time.LocalDateTime;
 
 import org.eclipse.paho.client.mqttv3.MqttMessage;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,7 +18,7 @@ public class TemperatureService {
 	@Autowired
 	TemperatureResource temperatureResource;
 	
-	public void temperatureArrived(MqttMessage message, Date time) {
+	public void temperatureArrived(MqttMessage message, LocalDateTime time) {
 		
 		temperature = new Temperature();
 		temperature.setDataRegistro(time);

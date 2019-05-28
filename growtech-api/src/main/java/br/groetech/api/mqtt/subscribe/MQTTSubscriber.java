@@ -3,6 +3,8 @@ package br.groetech.api.mqtt.subscribe;
 import java.sql.Date;
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
 
 import org.eclipse.paho.client.mqttv3.IMqttDeliveryToken;
 import org.eclipse.paho.client.mqttv3.MqttCallback;
@@ -49,14 +51,14 @@ public class MQTTSubscriber extends MQTTConfig implements MqttCallback, MQTTSubs
 	@Override
 	public void messageArrived(String topic, MqttMessage message) throws Exception {
 		
-		Date time = new Date(System.currentTimeMillis());
+		LocalDateTime time = LocalDateTime.now();
 		SimpleDateFormat fmt = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
 		
 		
 		
 		System.out.println();
 		System.out.println("***********************************************************************");
-		System.out.println("Message Arrived at Time: " + fmt.format(time) + "  Topic: " + topic + "  Message: "
+		System.out.println("Message Arrived at Time: " +time.toString() + "  Topic: " + topic + "  Message: "
 				+ new String(message.getPayload()));
 		System.out.println("***********************************************************************");
 		System.out.println();

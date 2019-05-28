@@ -1,6 +1,6 @@
 package br.groetech.api.model;
 
-import java.util.Date;
+import java.time.LocalDateTime;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -22,7 +22,7 @@ public class Humidity {
 	private Double humidity;
 	
 	@Column(name="registre_date")
-	private Date registreDate;
+	private LocalDateTime registreDate;
 
 	public Long getIdHumidity() {
 		return idHumidity;
@@ -40,13 +40,15 @@ public class Humidity {
 		this.humidity = humidity;
 	}
 
-	public Date getRegistreDate() {
+	public LocalDateTime getRegistreDate() {
 		return registreDate;
 	}
 
-	public void setRegistreDate(Date registreDate) {
+	public void setRegistreDate(LocalDateTime registreDate) {
 		this.registreDate = registreDate;
 	}
+
+	
 	
 	
 }

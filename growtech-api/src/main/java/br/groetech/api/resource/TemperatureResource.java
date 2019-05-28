@@ -1,5 +1,6 @@
 package br.groetech.api.resource;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
@@ -50,7 +51,11 @@ public class TemperatureResource {
 	}
 
 	public void saveMqttReceivedTemperature(Temperature temperature) {
+		
 		Temperature temperatureSaved = temperatureRepository.save(temperature);
+		
+		SimpleDateFormat fmt = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+		
 		 System.out.println("Temperatura salva: "+temperatureSaved.getTemperature()+" Hora Registro: "+temperatureSaved.getDataRegistro());
 		
 	}

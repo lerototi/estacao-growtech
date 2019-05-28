@@ -1,6 +1,7 @@
 package br.groetech.api.service;
 
 import java.sql.Date;
+import java.time.LocalDateTime;
 
 import org.eclipse.paho.client.mqttv3.MqttMessage;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,7 +18,7 @@ public class HumidityService {
 	HumidityResource humidityResource;
 
 
-	public void humidityArrived(MqttMessage message, Date time) {
+	public void humidityArrived(MqttMessage message, LocalDateTime time) {
 		
 		Humidity humidity = new Humidity();
 		humidity.setRegistreDate(time);
