@@ -5,11 +5,11 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css']
 })
-export class HomeComponent {
-  nome = 'Leo';
+export class HomeComponent implements OnInit {
 
- adicionar(nome: string) {
-   this.nome = nome;
- }
+  constructor() { }
+
+  ngOnInit() {
+  }
 
 }
