@@ -1,1 +1,4 @@
-/* You can add global styles to this file, and also import other style files */
+#legend.ui-fieldset-legend.ui-corner-all.ui-state-default.ui-unselectable-text{
+  width: auto;
+
+}
