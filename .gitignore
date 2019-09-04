@@ -1,1 +1,3 @@
-growtech-api-js/node_modules/* 
+growtech-api-js/node_modules/
+growtech-api-js/.env
+growtech-api-js/*.log
