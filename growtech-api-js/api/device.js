@@ -1,8 +1,6 @@
 const moment = require('moment')
 
 module.exports = app => {
-
-     device = {}
     
     const getDevicesByUser = (req, res) => {
         app.db('device')
