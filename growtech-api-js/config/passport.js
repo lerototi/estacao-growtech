@@ -10,7 +10,7 @@ module.exports = app => {
     }
 
     const strategy = new Strategy(params, (payload, done) => {
-        app.db('users')
+        app.db('user')
             .where({id: payload.id})
             .first()
             .then(user => {
@@ -27,7 +27,7 @@ module.exports = app => {
 
     return {
         initialize: () => passport.initialize(),
-        authenticate: () => passport.authenticate('jwt', { session: false })
+        authenticate: () => passport.authenticate('jwt', { session: false }),
 
     }
 }

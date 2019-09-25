@@ -6,6 +6,7 @@ exports.up = function(knex) {
         table.string('marca')
         table.string('modelo')
         table.dateTime('createdAt').notNull()
+        table.integer('device_id').unsigned().references('id').inTable('device')
     })
 };
 
