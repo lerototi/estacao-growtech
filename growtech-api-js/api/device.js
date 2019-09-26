@@ -9,13 +9,6 @@ module.exports = app => {
             .catch(err => res.status(500).json(err))
     }
 
-    const getAllDevices = (req, res) => {
-
-        app.db('device')
-            .then(device => res.json(device))
-            .catch(err => res.status(500).json(err))
-    }
-
     const save = (req, res) => {
         if(!req.body.name.trim() || !req.body.identifierCode) {
             return res.status(400).send('Verifique dados obrigatórios')
@@ -50,5 +43,5 @@ module.exports = app => {
         })
     }
 
-    return { getDevicesByUser, getAllDevices, save, remove}
+    return { getDevicesByUser, save, remove}
 }
