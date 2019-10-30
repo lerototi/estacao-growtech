@@ -1,0 +1,18 @@
+{
+  "authentication": {
+    "secret": "CHANGE_ME",
+    "service": "users",
+    "entity": "user",
+    "local": {
+      "usernameField": "email",
+      "passwordField": "password"
+    },
+    "authStrategies": ["jwt", "local"],
+    "jwtOptions": {
+      "header": { "typ": "login" },
+      "issuer": "iclub",
+      "algorithm": "HS256",
+      "expiresIn": "1d"
+    }
+  }
+}

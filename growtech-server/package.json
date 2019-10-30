@@ -1,0 +1,48 @@
+{
+  "name": "ic-server",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node src/app.js",
+    "debug": "node --expose-gc --inspect=9222 \"src/app.js\""
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@correa/joi-pt-br": "https://github.com/VilsonJrCorrea/joi-pt-br.git",
+    "@feathersjs/authentication": "^4.3.3",
+    "@feathersjs/authentication-jwt": "^2.0.10",
+    "@feathersjs/authentication-local": "^4.3.3",
+    "@feathersjs/authentication-oauth": "^4.3.3",
+    "@feathersjs/configuration": "^4.3.3",
+    "@feathersjs/errors": "^4.3.0",
+    "@feathersjs/express": "^4.3.0",
+    "@feathersjs/feathers": "^4.3.0",
+    "@feathersjs/socketio": "^4.3.0",
+    "amqplib": "^0.5.5",
+    "async": "^3.1.0",
+    "bcryptjs": "^2.4.3",
+    "case": "^1.6.2",
+    "cors": "^2.8.5",
+    "debug": "^4.1.1",
+    "dotenv": "^8.1.0",
+    "express-joi-validation": "^3.0.0",
+    "feathers-knex": "^6.0.2",
+    "feathers-permissions": "^1.1.0",
+    "jwt-decode": "^2.2.0",
+    "knex": "^0.19.3",
+    "lo": "^0.40.0",
+    "moment": "^2.24.0",
+    "mysql": "^2.17.1",
+    "oracledb": "^4.0.1",
+    "seedrandom": "^3.0.5",
+    "ua-parser-js": "^0.7.20"
+  },
+  "devDependencies": {
+    "eslint": "^6.3.0",
+    "eslint-config-prettier": "^6.1.0",
+    "eslint-plugin-prettier": "^3.1.0",
+    "prettier": "^1.18.2"
+  }
+}
