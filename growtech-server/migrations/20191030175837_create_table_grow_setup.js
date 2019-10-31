@@ -7,12 +7,12 @@ exports.up = function(knex) {
     table.boolean("default").notNullable;
     table.boolean("custom").notNullable;
     table
-      .integer("grow_type_id")
+      .integer("id_stage_types")
       .unsigned()
       .references("id")
-      .inTable("grow_type");
+      .inTable("stage_types");
     table
-      .integer("grow_id")
+      .integer("id_grow")
       .unsigned()
       .references("id")
       .inTable("grow");

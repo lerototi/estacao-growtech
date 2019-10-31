@@ -7,11 +7,6 @@ exports.up = function(knex) {
     table.string("species", 20);
     table.date("germination_date");
     table.boolean("auto_seed");
-    table
-      .integer("id_grow")
-      .unsigned()
-      .references("id")
-      .inTable("grow");
   });
 };
 

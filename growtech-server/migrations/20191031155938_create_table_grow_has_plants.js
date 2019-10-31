@@ -1,24 +1,24 @@
 exports.up = function(knex) {
-  return knex.schema.createTable("plant_stage", table => {
+  return knex.schema.createTable("grow_has_plants", table => {
     table
       .increments("id")
       .unsigned()
       .primary();
     table
-      .integer("id_stage_types")
+      .integer("id_grow")
       .unsigned()
       .references("id")
-      .inTable("stage_types");
+      .inTable("grow");
     table
       .integer("id_plant")
       .unsigned()
       .references("id")
       .inTable("plant");
-    table.date("started_at").notNullable();
-    table.date("finished_at");
+    table.date("come_in").notNullable();
+    table.date("get_out");
   });
 };
 
 exports.down = function(knex) {
-  return knex.schema.dropTable("plant_stage");
+  return knex.schema.dropTable("grow_has_plants");
 };
