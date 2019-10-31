@@ -12,7 +12,7 @@ exports.up = function(knex) {
         .string("email", 50)
         .notNullable()
         .unique();
-      table.string("password");
+      table.string("password").notNullable();
       table
         .timestamp("created_at")
         .notNullable()

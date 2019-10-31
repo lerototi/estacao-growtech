@@ -33,6 +33,7 @@ module.exports = {
       label: "Senha",
       type: "password",
       secret: true,
+      required: true,
       size: 60,
       min: 4,
       cols: 6
@@ -70,56 +71,21 @@ module.exports = {
       ],
       create: [
         async context => {
-          if (context.params.authentication.accessToken === undefined) {
-            //AUTO CADASTROS
+          console.log(context);
 
-            if ((context.data.permissions = "commercial"))
-              context.data.permissions = "member";
-          } else {
-            context = await authenticate("jwt")(context);
-
-            let autheticatedUser = context.params.user;
-            let userAuthPerm = autheticatedUser.permissions.split(".");
-
-            if (!userAuthPerm.includes("iclub_adm")) {
-              throw new Forbidden(
-                "É necessario privilégios para realiza a operação"
-              );
-            }
-          }
+          context.params.permissions = "user";
 
           context.params.arca = {
             first_name: context.data.first_name,
             last_name: context.data.last_name,
-            accepted_term: context.data.accepted_term,
-            id_term: context.data.id_term,
-            password: context.data.password,
-            permissions: context.data.permissions,
-            corporate_name: context.data.corporate_name,
-            fancy_name: context.data.fancy_name,
-            email_legal_person: context.data.email_legal_person,
-            doc_number: context.data.doc_number,
-            id_type_doc: context.data.id_type_doc
+            //accepted_term: context.data.accepted_term,
+            //id_term: context.data.id_term,
+            password: context.data.password
           };
-
-          //remove atributos do objeto
-          //_.omit(context.data, [
-          //   "first_name",
-          //   "last_name",
-          //   "accepted_term",
-          //  "id_term"
-          //]);
-          //ou
 
           delete context.data.first_name;
           delete context.data.last_name;
-          delete context.data.accepted_term;
-          delete context.data.id_term;
-          delete context.data.email_legal_person;
-          delete context.data.doc_number;
-          delete context.data.id_type_doc;
-          delete context.data.fancy_name;
-          delete context.data.corporate_name;
+          //delete context.data.accepted_term;
 
           return context;
         },
@@ -170,72 +136,25 @@ module.exports = {
         },
 
         async context => {
-          //Se cadastro realizado por terceiro
-          if (context.params.authentication.accessToken !== undefined) {
-            jwt = context.params.authentication.accessToken;
-            var loggedUserId = decode(jwt).sub;
+          const jwt = await context.app.service("authentication").create({
+            email: context.result.email,
+            password: context.params.arca.password,
+            strategy: "local"
+          });
 
-            if (context.params.arca.permissions === "distributor") {
-              const legal_person = await context.app
-                .service("legal-person")
-                .create({
-                  corporate_name: context.params.arca.corporate_name,
-                  fancy_name: context.params.arca.fancy_name,
-                  email: context.params.arca.email_legal_person,
-                  doc_number: context.params.arca.doc_number,
-                  id_doc_type: context.params.arca.id_type_doc
-                });
+          context.params.headers = [
+            {
+              key: "Content-Type:",
+              value: "application/json"
+            },
 
-              const distributor = await context.app
-                .service("distributor")
-                .create({
-                  id_legal_person: legal_person.id
-                });
-
-              // credencia usuario cadastrado por terceiro
-              await context.app.service("credentials").create({
-                id_user: context.result.id,
-                id_authorized_by_user: loggedUserId,
-                authorized_at: moment().format(),
-                active: true,
-                id_distributor: distributor.id
-              });
+            {
+              key: "Auhorization",
+              value: "Bearer " + jwt.accessToken
             }
-            //TODO outros fluxos de cadastro
-          } else {
-            //Se cadastro realizado pelo proprio membro
+          ];
 
-            member = await context.app.service("member").create({
-              id_term: context.params.arca.id_term,
-              accepted_term: context.params.arca.accepted_term
-            });
-
-            await context.app.service("credentials").create({
-              id_user: context.result.id,
-              active: true,
-              id_member: member.id
-            });
-
-            const jwt = await context.app.service("authentication").create({
-              email: context.result.email,
-              password: context.params.arca.password,
-              strategy: "local"
-            });
-
-            context.params.headers = [
-              {
-                key: "Content-Type:",
-                value: "application/json"
-              },
-
-              {
-                key: "Auhorization",
-                value: "Bearer " + jwt.accessToken
-              }
-            ];
-
-            return context;
-          }
+          return context;
         }
       ]
     }
