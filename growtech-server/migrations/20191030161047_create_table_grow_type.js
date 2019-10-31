@@ -5,6 +5,7 @@ exports.up = function(knex) {
       .unsigned()
       .primary();
     table.string("name", 15).notNullable();
+    table.string("desc", 15).notNullable();
   });
 };
 

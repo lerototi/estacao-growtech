@@ -5,6 +5,7 @@ exports.up = function(knex) {
       .unsigned()
       .primary();
     table.boolean("default").notNullable;
+    table.boolean("custom").notNullable;
     table
       .integer("grow_type_id")
       .unsigned()
@@ -13,7 +14,7 @@ exports.up = function(knex) {
     table
       .integer("grow_id")
       .unsigned()
-      .refecences("id")
+      .references("id")
       .inTable("grow");
   });
 };
