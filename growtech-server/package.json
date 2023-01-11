@@ -31,7 +31,7 @@
     "feathers-knex": "^6.0.2",
     "feathers-permissions": "^1.1.0",
     "jwt-decode": "^2.2.0",
-    "knex": "^0.19.3",
+    "knex": "^2.4.0",
     "lo": "^0.40.0",
     "moment": "^2.24.0",
     "mysql": "^2.17.1",
